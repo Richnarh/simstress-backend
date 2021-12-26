@@ -57,8 +57,8 @@ export const toDto = (kaba:Kaba):IKaba =>{
     dto.shoulderToCap = kaba.shoulderToCap;
     dto.valueDate = kaba.valueDate;
     if(kaba.genderType !== undefined || kaba.genderType !== null){
-        // dto.genderType = kaba.genderType.typeName;
-        // dto.genderTypeId = kaba.genderType.id;
+        dto.genderType = kaba.genderType.typeName;
+        dto.genderTypeId = kaba.genderType.id;
     }
     return dto;
 }
