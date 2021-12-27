@@ -41,12 +41,14 @@ export const toEntity = async (isleeve:ISleeve, userAccountId:string | string[] 
 
 export const toDto = (sleeve:Sleeve):ISleeve =>{
     let dto = {} as ISleeve;
+    dto.id = sleeve.id;
     dto.crossBack = sleeve.crossBack;
     dto.sleeveLength = sleeve.sleeveLength;
     dto.arm = sleeve.arm;
     dto.wrist = sleeve.wrist;
     dto.chest = sleeve.chest;
     dto.shirtLength = sleeve.shirtLength;
+    dto.valueDate = sleeve.valueDate;
     
     if(sleeve.genderType !== undefined || sleeve.genderType !== null){
         dto.genderType = sleeve.genderType.typeName;

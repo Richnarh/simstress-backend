@@ -3,8 +3,6 @@ import { BaseDto } from "./base/base.dto";
 export interface IKaba extends BaseDto{
     burst:number;
     waist:number;
-    genderType:string;
-    genderTypeId:string;
     shoulderToWaist:number;
     kabaLength:number;
     sleeveLength:number;
@@ -12,4 +10,6 @@ export interface IKaba extends BaseDto{
     nippleToNipple:number;
     shoulderToBack:number;
     shoulderToCap:number;
+    genderType:string;
+    genderTypeId:string;
 }

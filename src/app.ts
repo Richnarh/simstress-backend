@@ -13,6 +13,8 @@ import genderTypeRoutes from './routes/genderType.routes';
 import sleetRoutes from './routes/sleet.routes';
 import collectDressRoutes from './routes/collectDress.routes';
 import kabaRoutes from './routes/kaba.routes';
+import sleeveRoutes from './routes/sleeve.routes';
+import trouserRoutes from './routes/trouser.routes';
 
 const port = process.env.PORT || 3000;
 const app:Application = express();
@@ -34,5 +36,7 @@ app.use(genderTypeRoutes);
 app.use(sleetRoutes);
 app.use(collectDressRoutes);
 app.use(kabaRoutes);
+app.use(sleeveRoutes);
+app.use(trouserRoutes);
 
 export default app;

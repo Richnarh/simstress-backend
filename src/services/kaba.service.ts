@@ -10,12 +10,13 @@ export const findAllKaba = async(userAccountId:string|string[]|undefined) =>{
 }
 
 export const findById = async(id:any, userAccountId:string|string[]|undefined) =>{
-    return await getRepository(Kaba).findOne({ 
-        where: {
-            id:id,
-            userAccount: userAccountId
-        }
-    });
+    
+    return await getRepository(Kaba)
+                .createQueryBuilder("kaba")
+                .leftJoinAndSelect("kaba.genderType", "genderType")
+                .where("kaba.user_account = :userAccount", {userAccount:userAccountId})
+                .andWhere({id:id})
+                .getOne();
 }
 
 export const saveKaba = async(kaba:Kaba) =>{
