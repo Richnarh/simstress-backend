@@ -1,4 +1,4 @@
-import { Entity, Column} from "typeorm";
+import { Entity, Column, Unique} from "typeorm";
 import { BaseModel } from "./models/base.model";
 
 @Entity({name:"user_accounts"})
@@ -10,6 +10,7 @@ export class UserAccount extends BaseModel{
     @Column({name:"last_name", nullable:true})
     lastName: string;
 
+    @Unique(["email_address"])
     @Column({name:"email_address", nullable:true})
     emailAddress: string;
 
@@ -21,6 +22,10 @@ export class UserAccount extends BaseModel{
 
     @Column({name:"shop_name", nullable:true})
     shopName: string;
+
+    @Column({name:"username", nullable:true})
+    @Unique(["username"])
+    username: string;
 
     @Column({name:"password", nullable:true})
     password: string;

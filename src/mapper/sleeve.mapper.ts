@@ -1,7 +1,7 @@
 import { ISleeve } from "../dto/sleeve.dto";
 import { Sleeve } from "../entities/sleeve.entity";
 import { findGenderTypeById } from "../services/genderType.service";
-import { findUserAccountById } from "../services/userAccount.service";
+import { findUserAccountById } from "../services/auth.service";
 
 export const toEntity = async (isleeve:ISleeve, userAccountId:string | string[] | undefined):Promise<Sleeve> =>{
     let sleeve:Sleeve = new Sleeve();

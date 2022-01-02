@@ -6,6 +6,7 @@ export interface IUserAccount{
     mobileNumber: string;
     unit: string;
     shopName: string;
+    username: string;
     password: string;
     valueDate:Date;
 }

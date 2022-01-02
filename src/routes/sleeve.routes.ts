@@ -3,11 +3,11 @@ import { createSleeve, delSleve, findAll, getById, updateSleve } from "../contro
 
 const router = Router();
 
-router.post('/sleeve', createSleeve);
-router.get('/sleeve/list', findAll);
-router.get("/sleeve/:id", getById);
-router.put("/sleeve/:id", updateSleve);
-router.delete("/sleeve/:id", delSleve);
+router.post('/sleeves', createSleeve);
+router.get('/sleeves/list', findAll);
+router.get("/sleeves/:id", getById);
+router.put("/sleeves/:id", updateSleve);
+router.delete("/sleeves/:id", delSleve);
 
 
 export default router;

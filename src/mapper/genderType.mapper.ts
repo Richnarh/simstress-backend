@@ -1,6 +1,6 @@
 import { IGenderType } from "../dto/genderType.dto";
 import { GenderType } from "../entities/GenderType.entity";
-import { findUserAccountById } from "../services/userAccount.service";
+import { findUserAccountById } from "../services/auth.service";
 
 export const toEntity = async (igenderType:IGenderType, userAccountId:string | string[] | undefined):Promise<GenderType> =>{
     let genderType:GenderType = new GenderType();

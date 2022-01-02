@@ -1,7 +1,7 @@
 import { ITrouser } from "../dto/trouser.dto";
 import { Trouser } from "../entities/trouser.entity";
 import { findGenderTypeById } from "../services/genderType.service";
-import { findUserAccountById } from "../services/userAccount.service";
+import { findUserAccountById } from "../services/auth.service";
 
 export const toEntity = async (iTrouser:ITrouser, userAccountId:string | string[] | undefined):Promise<Trouser> =>{
     let trouser:Trouser = new Trouser();

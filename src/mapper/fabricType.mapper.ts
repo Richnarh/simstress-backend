@@ -1,6 +1,6 @@
 import { IFabricType } from "../dto/fabricType.dto";
 import { FabricType } from "../entities/fabricType.entity";
-import { findUserAccountById } from "../services/userAccount.service";
+import { findUserAccountById } from "../services/auth.service";
 
 export const toEntity = async (ifabricType:IFabricType, userAccountId:string | string[] | undefined):Promise<FabricType> =>{
     let fabricType = {} as FabricType;

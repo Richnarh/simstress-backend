@@ -3,11 +3,11 @@ import { createTrouser, deleteTrouzer, findAll, getById, updateTrouzer, } from "
 
 const router = Router();
 
-router.post('/trouser', createTrouser);
-router.get('/trouser/list', findAll);
-router.get("/trouser/:id", getById);
-router.put("/trouser/:id", updateTrouzer);
-router.delete("/trouser/:id", deleteTrouzer);
+router.post('/trousers', createTrouser);
+router.get('/trousers/list', findAll);
+router.get("/trousers/:id", getById);
+router.put("/trousers/:id", updateTrouzer);
+router.delete("/trousers/:id", deleteTrouzer);
 
 
 export default router;

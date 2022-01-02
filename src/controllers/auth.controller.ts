@@ -1,10 +1,13 @@
 import { Request, Response } from "express";
+import jwt from "jsonwebtoken";
+
 import { IUserAccount } from "../dto/userAccount.dto";
 import { UserAccount } from "../entities/userAccount.entity";
 import { toDto, toEntity } from "../mapper/userAccount.mapper";
-import { findAllAccounts, saveUserAccount, updateAccount } from "../services/userAccount.service";
+import { findAllAccounts, login, saveUserAccount, updateAccount } from "../services/auth.service";
 import ApiResponse from "../system/ApiResponse";
 import { dataUpdated } from "../system/messages";
+import { comparePassword, hashPassword } from "../utils/validation.utils";
 
     export const accountList = async (req: Request, res: Response): Promise<Response<UserAccount[]>> =>  {
         try 
@@ -26,7 +29,7 @@ import { dataUpdated } from "../system/messages";
         return res.send(ApiResponse.cannotFind([]))
     }
 
-    export const createUserAccount  = async (req: Request, res: Response): Promise<Response<UserAccount>> =>  {
+    export const signup  = async (req: Request, res: Response): Promise<Response<UserAccount>> =>  {
         try 
         {
             const entity = toEntity(req.body);
@@ -34,7 +37,17 @@ import { dataUpdated } from "../system/messages";
             if (userAccount !== null || userAccount !== undefined)
             {
                 const dto = toDto(userAccount);
-                return res.json(ApiResponse.ok(dto));
+
+                const token = jwt.sign(
+                    { userId: userAccount.id, username: userAccount.username }, process.env.SECRET || "somesecretehere",
+                    { expiresIn: "1h" } 
+                  );
+        
+                return res.header("auth-token", token).json(ApiResponse.ok(dto));
+            }
+            else
+            {
+                return res.json(ApiResponse.ERROR({}, 'Username/Email taken'));  
             }
         } catch (error) 
         {
@@ -61,4 +74,40 @@ import { dataUpdated } from "../system/messages";
             console.log(`error: ${error}`);
         }
         return res.send(ApiResponse.cannotFind([]))
+    }
+
+    export const doLogin = async (req:Request, res:Response) =>{
+        console.log(req.body);
+
+        let { username, password } = req.body;
+        
+        if (!(username && password)) 
+        {
+          res.status(400).send();
+        }  
+
+        const singleUser = await login(username);
+        console.log("singleUser: ", singleUser);
+
+        const checkPassword:boolean = comparePassword(password, singleUser.password);
+
+        if(checkPassword){
+            console.log("Password matched");
+            const token = jwt.sign(
+                { userId: singleUser.id, username: singleUser.username },
+                process.env.SECRET || "somesecretehere",
+                { expiresIn: "1h" } 
+              );
+    
+             return res.header("auth-token", token).json(singleUser);
+        }
+        if(!checkPassword)
+        {
+            console.log("password do not match");
+            return res.json(ApiResponse.ERROR([], "Password do not match"));
+        }
+
+        if(!singleUser){
+            return res.json(ApiResponse.ERROR([], "Incorrect username/password"));
+        }
     }
