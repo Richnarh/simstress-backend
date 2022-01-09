@@ -99,7 +99,7 @@ import { comparePassword, hashPassword } from "../utils/validation.utils";
                 { expiresIn: "1h" } 
               );
     
-             return res.header("auth-token", token).json(singleUser);
+             return res.header("auth-token", token).json(ApiResponse.ok(toDto(singleUser,token)));
         }
         if(!checkPassword)
         {
