@@ -1,7 +1,7 @@
 import { IKaba } from "../dto/kaba.dto";
 import { Kaba } from "../entities/kaba.entity";
 import { findGenderTypeById } from "../services/genderType.service";
-import { findUserAccountById } from "../services/userAccount.service";
+import { findUserAccountById } from "../services/auth.service";
 
 export const toEntity = async (ikaba:IKaba, userAccountId:string | string[] | undefined):Promise<Kaba> =>{
     let kaba:Kaba = new Kaba();
@@ -57,8 +57,8 @@ export const toDto = (kaba:Kaba):IKaba =>{
     dto.shoulderToCap = kaba.shoulderToCap;
     dto.valueDate = kaba.valueDate;
     if(kaba.genderType !== undefined || kaba.genderType !== null){
-        // dto.genderType = kaba.genderType.typeName;
-        // dto.genderTypeId = kaba.genderType.id;
+        dto.genderType = kaba.genderType.typeName;
+        dto.genderTypeId = kaba.genderType.id;
     }
     return dto;
 }

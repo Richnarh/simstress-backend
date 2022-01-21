@@ -1,5 +1,5 @@
 import StatusCode from "./httpStatusCode";
-import { dataCreated,dataNotFound,successAction, unknownError } from "./messages";
+import { dataCreated,dataNotFound,notAuthorised,successAction, unknownError } from "./messages";
 
 class ApiResponse
 {
@@ -53,6 +53,15 @@ class ApiResponse
             success: false,
             status:StatusCode.BAD_REQUEST,
             message:message,
+            data:T
+        }
+    }
+
+    static NOT_AUTHORISED = (T:Object,) => {
+        return {
+            success: false,
+            status:StatusCode.UNAUTHORISED,
+            message:notAuthorised,
             data:T
         }
     }

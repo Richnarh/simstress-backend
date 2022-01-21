@@ -9,6 +9,14 @@ export const findAllFabricType = async(userAccountId:string|string[]|undefined) 
     });
 }
 
+export const findFabricTypeById = async (fabricTypeId:string)=>{
+    return await getRepository(FabricType).findOne({ 
+        where: {
+            id: fabricTypeId
+        }
+    });
+}
+
 export const findById = async(id:any, userAccountId:string|string[]|undefined) =>{
    return await getRepository(FabricType).findOne({ 
     where: {

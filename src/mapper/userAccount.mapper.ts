@@ -1,5 +1,6 @@
 import { IUserAccount } from "../dto/userAccount.dto";
 import { UserAccount } from "../entities/userAccount.entity";
+import { hashPassword } from "../utils/validation.utils";
 
 
 export const toEntity = (iUserAccount:IUserAccount):UserAccount =>{
@@ -10,14 +11,16 @@ export const toEntity = (iUserAccount:IUserAccount):UserAccount =>{
     userAccount.lastName = iUserAccount.lastName;
     userAccount.mobileNumber = iUserAccount.mobileNumber;
     userAccount.shopName = iUserAccount.shopName;
+    userAccount.emailAddress = iUserAccount.emailAddress;
+    userAccount.username = iUserAccount.username;
     userAccount.unit = iUserAccount.unit;
     userAccount.valueDate = new Date();
-    userAccount.password = iUserAccount.password;
-
+    userAccount.password = hashPassword(iUserAccount.password);
+    console.log('hash password: ',userAccount.password);
     return userAccount;
 }
 
-export const toDto = (userAccount:UserAccount):IUserAccount =>{
+export const toDto = (userAccount:UserAccount, token?:string):IUserAccount =>{
     let dto = {} as IUserAccount;
 
     dto.id = userAccount.id;
@@ -26,7 +29,9 @@ export const toDto = (userAccount:UserAccount):IUserAccount =>{
     dto.mobileNumber = userAccount.mobileNumber;
     dto.shopName = userAccount.shopName;
     dto.unit = userAccount.unit;
+    dto.emailAddress = userAccount.emailAddress;
+    dto.username = userAccount.username;
     dto.valueDate = new Date();
-    
+    dto.token = token;
     return dto;
 }

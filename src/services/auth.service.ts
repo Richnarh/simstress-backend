@@ -9,6 +9,14 @@ export const findUserAccountById = async (userAccountId:string | string[] | unde
     });
 }
 
+export const login = async (username:string): Promise<UserAccount> =>{
+        return await getRepository(UserAccount).findOne({ 
+        where: {
+            username,
+        }
+    });
+}
+
 export const findAllAccounts = async() =>{
     return await getRepository(UserAccount).find();
  }

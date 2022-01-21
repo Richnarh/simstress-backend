@@ -1,7 +1,7 @@
 import { ISleet } from "../dto/sleet.dto";
 import { Sleet } from "../entities/sleet.entity";
 import { findGenderTypeById } from "../services/genderType.service";
-import { findUserAccountById } from "../services/userAccount.service";
+import { findUserAccountById } from "../services/auth.service";
 
 export const toEntity = async (isleet:ISleet, userAccountId:string | string[] | undefined):Promise<Sleet> =>{
     let sleet:Sleet = new Sleet();

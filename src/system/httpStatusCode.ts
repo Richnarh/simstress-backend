@@ -15,6 +15,7 @@ class StatusCode{
     static NOT_FOUND = 404;
     static METHOD_NOT_ALLOWED = 405;
     static REQUEST_TIME_OUT = 408;
+    static CONFLICT = 409;
     static PAYLOAD_TOO_LARGE = 413;
     static UNSUPPORTED_MEDIA_TYPE = 415;
 

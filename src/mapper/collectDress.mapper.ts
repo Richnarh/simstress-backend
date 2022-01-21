@@ -1,6 +1,6 @@
 import { ICollectDress } from "../dto/collectDress.dto";
 import { CollectDress } from "../entities/collectDress.entity";
-import { findUserAccountById } from "../services/userAccount.service";
+import { findUserAccountById } from "../services/auth.service";
 
 export const toEntity = async (iCollectDress:ICollectDress, userAccountId:string | string[] | undefined):Promise<CollectDress> =>{
     let collectDress:CollectDress = new CollectDress();
