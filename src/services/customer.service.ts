@@ -11,12 +11,19 @@ export const findAllCustomers = async(userAccountId:string|string[]|undefined) =
 }
 
 export const findById = async(id:any, userAccountId:string|string[]|undefined) =>{
-    return await getRepository(Customer).findOne({ 
-        where: {
-            id:id,
-            userAccount: userAccountId
-        }
-    });
+    // return await getRepository(Customer).findOne({ 
+    //     where: {
+    //         id:id,
+    //         userAccount: userAccountId
+    //     }
+    // });
+
+    return await getRepository(Customer)
+                .createQueryBuilder("customer")
+                .leftJoinAndSelect("customer.genderType", "genderType")
+                .where("customer.user_account = :userAccount", {userAccount:userAccountId})
+                .andWhere({id:id})
+                .getOne();
 }
 
 export const saveCustomer = async(customer:Customer) =>{

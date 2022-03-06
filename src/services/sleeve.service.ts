@@ -10,13 +10,6 @@ export const findAllSleeve = async(userAccountId:string|string[]|undefined) =>{
 }
 
 export const findById = async(id:any, userAccountId:string|string[]|undefined) =>{
-    // return await getRepository(Sleeve).findOne({ 
-    //     where: {
-    //         id:id,
-    //         userAccount: userAccountId
-    //     }
-    // });
-
     return await getRepository(Sleeve)
                 .createQueryBuilder("sleeve")
                 .leftJoinAndSelect("sleeve.genderType", "genderType")

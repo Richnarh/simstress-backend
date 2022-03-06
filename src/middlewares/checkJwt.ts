@@ -20,14 +20,14 @@ export const checkJwt = (req:Request, res:Response, next:NextFunction) =>{
     }
     catch(e)
     {
-        res.json(ApiResponse.NOT_AUTHORISED({}));
-        return;
+        console.log(`error: ${e}`);
+        return res.json(ApiResponse.NOT_AUTHORISED({}));
     }
 
     const {userId, username} = jwtPayload;
     const newToken = jwt.sign({userId, username}, process.env.SECRET_KEY || "somesecretehere", {
         expiresIn: "1h"
-    });
+    })
     console.log("newToken: ", newToken);
     res.setHeader("token", newToken);
 

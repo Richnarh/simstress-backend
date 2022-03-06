@@ -68,7 +68,6 @@ import { accountIdNotFound } from "../../system/messages";
             lookupItemList.push(lookupItem);
         }
 
-        // return res.status(200).json({ data:lookupItemList });
         return res.json(ApiResponse.ok(lookupItemList));
 
        } catch (error) 

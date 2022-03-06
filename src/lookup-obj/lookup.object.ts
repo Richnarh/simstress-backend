@@ -41,7 +41,7 @@ export const DressTypes = [
 
 export const Gender = [
     {id:"MALE", itemName:"Male"},
-    {id:"FEMALE", itemName:"Female"}
+    {id:"FEMALE", itemName:"Female"},
 ];
 
 export const TypeName = [

@@ -16,6 +16,7 @@ import collectDressRoutes from './routes/collectDress.routes';
 import kabaRoutes from './routes/kaba.routes';
 import sleeveRoutes from './routes/sleeve.routes';
 import trouserRoutes from './routes/trouser.routes';
+import customerRoutes from './routes/customer.routes';
 import { checkJwt } from "./middlewares/checkJwt";
 
 const port = process.env.PORT || 3000;
@@ -43,5 +44,6 @@ app.use(collectDressRoutes);
 app.use(kabaRoutes);
 app.use(sleeveRoutes);
 app.use(trouserRoutes);
+app.use(customerRoutes);
 
 export default app;

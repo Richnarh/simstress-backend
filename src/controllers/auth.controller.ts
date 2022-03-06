@@ -7,7 +7,7 @@ import { toDto, toEntity } from "../mapper/userAccount.mapper";
 import { findAllAccounts, login, saveUserAccount, updateAccount } from "../services/auth.service";
 import ApiResponse from "../system/ApiResponse";
 import { dataUpdated } from "../system/messages";
-import { comparePassword, hashPassword } from "../utils/validation.utils";
+import { comparePassword } from "../utils/validation.utils";
 
     export const accountList = async (req: Request, res: Response): Promise<Response<UserAccount[]>> =>  {
         try 
@@ -26,7 +26,7 @@ import { comparePassword, hashPassword } from "../utils/validation.utils";
         {
             console.log(`error: ${error}`);
         }
-        return res.send(ApiResponse.cannotFind([]))
+        return res.send(ApiResponse.cannotFind([]));
     }
 
     export const signup  = async (req: Request, res: Response): Promise<Response<UserAccount>> =>  {
@@ -73,7 +73,7 @@ import { comparePassword, hashPassword } from "../utils/validation.utils";
         {
             console.log(`error: ${error}`);
         }
-        return res.send(ApiResponse.cannotFind([]))
+        return res.send(ApiResponse.cannotFind([]));
     }
 
     export const doLogin = async (req:Request, res:Response) =>{
@@ -83,7 +83,7 @@ import { comparePassword, hashPassword } from "../utils/validation.utils";
         
         if (!(username && password)) 
         {
-          res.status(400).send();
+         return res.status(400).send();
         }  
 
         const singleUser = await login(username);

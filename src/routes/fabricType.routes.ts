@@ -9,5 +9,4 @@ router.get("/fabric-type/:id", getById);
 router.put("/fabric-type/:id", updateFabricType);
 router.delete("/fabric-type/:id", deleteFabricType);
 
-
 export default router;
