@@ -4,9 +4,10 @@ import jwt from "jsonwebtoken";
 import { IUserAccount } from "../dto/userAccount.dto";
 import { UserAccount } from "../entities/userAccount.entity";
 import { toDto, toEntity } from "../mapper/userAccount.mapper";
-import { findAllAccounts, login, saveUserAccount, updateAccount } from "../services/auth.service";
+import { findAllAccounts, login, updateAccount } from "../services/auth.service";
 import ApiResponse from "../system/ApiResponse";
 import { dataUpdated } from "../system/messages";
+import { save } from "../utils/CrudBuilder";
 import { comparePassword } from "../utils/validation.utils";
 
     export const accountList = async (req: Request, res: Response): Promise<Response<UserAccount[]>> =>  {
@@ -33,7 +34,7 @@ import { comparePassword } from "../utils/validation.utils";
         try 
         {
             const entity = toEntity(req.body);
-            const userAccount = await saveUserAccount(entity);
+            const userAccount = await save(entity, UserAccount);
             if (userAccount !== null || userAccount !== undefined)
             {
                 const dto = toDto(userAccount);
@@ -41,7 +42,7 @@ import { comparePassword } from "../utils/validation.utils";
                 const token = jwt.sign(
                     { userId: userAccount.id, username: userAccount.username }, process.env.SECRET || "somesecretehere",
                     { expiresIn: "1h" } 
-                  );
+                  );,
         
                 return res.header("auth-token", token).json(ApiResponse.ok(dto));
             }
