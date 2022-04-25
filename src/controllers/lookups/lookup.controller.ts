@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { LookupItem } from "../../dto/lookup.dto";
+import { LookupItem } from "../../lookup-obj/lookup.dto";
 import { CardStatus, DressTypes, Gender, Relationship, TypeName, Units } from "../../lookup-obj/lookup.object";
 import { findAllFabricType } from "../../services/fabricType.service";
 import ApiResponse from "../../system/ApiResponse";
