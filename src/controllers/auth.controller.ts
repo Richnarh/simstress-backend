@@ -42,7 +42,7 @@ import { comparePassword } from "../utils/validation.utils";
                 const token = jwt.sign(
                     { userId: userAccount.id, username: userAccount.username }, process.env.SECRET || "somesecretehere",
                     { expiresIn: "1h" } 
-                  );,
+                  );
         
                 return res.header("auth-token", token).json(ApiResponse.ok(dto));
             }
